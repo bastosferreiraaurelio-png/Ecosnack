@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EcoSnack — Seu plano, seu ritmo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B110E;--pn:#111A15;--cd:#17231B;--g:#22C55E;--g2:#16A34A;--ac:#22C55E;--tx:#F1F5F2;--mu:#94A39A;--ln:#26352B;--on:#04130A;--hi:rgba(34,197,94,.1);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="light"]{--bg:#F3F6F4;--pn:#fff;--cd:#fff;--g:#16A34A;--g2:#15803D;--ac:#16A34A;--tx:#0F1A14;--mu:#5E6F65;--ln:#DCE5DF;--on:#fff;--hi:rgba(22,163,74,.09);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 Inter,system-ui,sans-serif;display:grid;grid-template-columns:232px 1fr;min-height:100vh;-webkit-font-smoothing:antialiased}
+h1{font-size:1.35rem;font-weight:600;letter-spacing:-.02em;margin:0 0 16px}h2{font-size:1.02rem;font-weight:600;margin:0 0 12px}h3{font-size:.95rem;font-weight:600;margin:0 0 8px}
+svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+nav.side{background:var(--pn);border-right:1px solid var(--ln);padding:20px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:2px}
+.logo{font-weight:700;font-size:1.15rem;padding:4px 10px 20px;display:flex;align-items:center;gap:8px}.logo i{color:var(--g);font-style:normal}.mk{width:12px;height:12px;border-radius:4px;background:var(--g)}
+nav a,nav .nl{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:var(--mu);text-decoration:none;background:none;border:0;font:inherit;cursor:pointer;transition:background .18s,color .18s}
+nav a:hover,nav .nl:hover{color:var(--tx);background:var(--hi)}nav a.on{color:var(--g);background:var(--hi);font-weight:500}.sp{flex:1}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.wrap{min-width:0;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px clamp(16px,3vw,36px);border-bottom:1px solid var(--ln);background:var(--bg);position:sticky;top:0;z-index:4}
+.hi{font-weight:600;font-size:1.05rem}#dt{text-transform:capitalize}
+.ib{width:38px;height:38px;padding:0;border-radius:50%;display:grid;place-items:center;position:relative}
+#bc{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;border-radius:9px;background:var(--g);color:var(--on);font-size:.68rem;font-weight:700;display:grid;place-items:center}
+#np{position:absolute;right:0;top:46px;width:min(320px,86vw);background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:6px 14px;box-shadow:0 12px 32px rgba(0,0,0,.35)}#np p{margin:10px 0;font-size:.88rem}
+#np[hidden],#bc[hidden],#auth[hidden]{display:none}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--hi);border:1px solid var(--g);color:var(--g);font-weight:600;font-size:.82rem}
+main{padding:24px clamp(16px,3vw,36px) 64px;max-width:1080px;width:100%}main>*{animation:up .3s ease both}
+@keyframes up{from{opacity:0;transform:translateY(6px)}}
+.cd{background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.18)}main>.cd{margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:0 0 14px}
+.g2{display:grid;grid-template-columns:3fr 2fr;gap:14px;align-items:start}.stk{display:grid;gap:14px}
+.big{font-size:1.7rem;font-weight:600;letter-spacing:-.02em;line-height:1.15}.big.gr{color:var(--g)}.mu{color:var(--mu)}.sm{font-size:.85rem}
+button,.btn,.b{font:inherit;cursor:pointer;border-radius:9px;border:1px solid var(--ln);background:var(--pn);color:var(--tx);padding:8px 14px;transition:background .18s,border-color .18s,transform .1s}
+button:hover,.btn:hover{border-color:var(--g2)}button:active{transform:translateY(1px)}.btn{display:inline-block;margin:0}
+.b{background:var(--g);border-color:var(--g);color:var(--on);font-weight:600;text-decoration:none;display:inline-block}.b:hover{background:var(--g2);border-color:var(--g2)}.dg{color:#EF4444}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.meal{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--ln)}.meal:first-child{border-top:0}
+.meal.next{background:var(--hi);margin:0 -10px;padding:14px 10px;border-radius:10px}.meal input{width:20px;height:20px;margin-top:3px;accent-color:var(--g)}
+.meal .in{flex:1;min-width:0}.done .nm{text-decoration:line-through;opacity:.5}
+.bar{height:6px;background:var(--ln);border-radius:9px;overflow:hidden;margin:10px 0 6px}.bar i{display:block;height:100%;background:var(--g);border-radius:9px;transition:width .5s ease}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 14px}.tabs button.on{background:var(--g);border-color:var(--g);color:var(--on);font-weight:600}
+label{display:block;font-weight:500;font-size:.9rem}
+input,select,textarea{font:inherit;width:100%;margin-top:4px;padding:9px 10px;border-radius:9px;border:1px solid var(--ln);background:var(--pn);color:var(--tx);transition:border-color .18s}input:focus,select:focus,textarea:focus{border-color:var(--g)}
+input[type=checkbox]{width:auto;margin:0 8px 0 0;accent-color:var(--g)}
+fieldset{border:1px solid var(--ln);border-radius:12px;margin:0 0 14px;padding:14px 16px;background:var(--cd)}legend{font-weight:600;padding:0 6px}
+.f2{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.warn{background:var(--hi);border-left:3px solid var(--g);padding:12px 14px;border-radius:8px;margin:0 0 14px}
+.empty{text-align:center;padding:40px 20px}.sec{margin:22px 0 12px}details.adv summary{cursor:pointer;color:var(--g);font-weight:500;padding:4px 0}details.adv .row{margin-top:10px}
+svg.ch{width:100%;height:auto;display:block}
+#toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}#toast.show{opacity:1}
+.ft{margin-top:32px;font-size:.8rem;color:var(--mu)}
+body.out{display:block}body.out nav,body.out .wrap{display:none}
+#auth{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--bg)}
+.ac{background:var(--cd);border:1px solid var(--ln);border-radius:16px;padding:28px;width:min(420px,100%)}.ac .logo{padding:0 0 6px;font-size:1.4rem}.ac p{margin:0}.ac form{display:grid;gap:12px}
+.at{display:flex;gap:6px;margin:16px 0}.at button{flex:1}.at button.on{background:var(--g);border-color:var(--g);color:var(--on);font-weight:600}
+.lk{background:none;border:0;color:var(--g);text-decoration:underline;padding:0;text-align:left}
+@media(max-width:900px){.g2{grid-template-columns:1fr}}
+@media(max-width:760px){body{grid-template-columns:1fr}
+nav.side{position:fixed;top:auto;bottom:0;left:0;right:0;height:auto;flex-direction:row;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:5;justify-content:space-around;border-right:0;border-top:1px solid var(--ln)}
+nav .logo,nav .sp,nav .xo{display:none}nav a{flex:1;flex-direction:column;gap:2px;font-size:.68rem;padding:6px 2px;text-align:center}main{padding-bottom:96px}}
+@media(max-width:480px){nav a span{display:none}nav a{padding:10px 2px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body class="out">
+<nav class="side" aria-label="Principal">
+<div class="logo"><span class="mk"></span>Eco<i>Snack</i></div>
+<a href="#hoje" aria-label="Visão geral"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg><span>Visão geral</span></a>
+<a href="#perfil" aria-label="Meu perfil"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8"/></svg><span>Meu perfil</span></a>
+<a href="#cardapio" aria-label="Plano alimentar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v15H3zM3 10h18M8 3v4M16 3v4"/></svg><span>Plano alimentar</span></a>
+<a href="#refeicoes" aria-label="Minhas refeições"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg><span>Minhas refeições</span></a>
+<a href="#progresso" aria-label="Progresso"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg><span>Progresso</span></a>
+<a href="#assistente" aria-label="Assistente IA"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg><span>Assistente IA</span></a>
+<a href="#config" aria-label="Configurações"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0M14 4v4M8 10v4M16 16v4"/></svg><span>Configurações</span></a>
+<div class="sp"></div>
+<button class="nl xo" data-a="logout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg><span>Sair</span></button>
+</nav>
+<div class="wrap"><header class="top"><div><div class="hi" id="hi"></div><div class="mu sm" id="dt"></div></div>
+<div class="row"><div style="position:relative"><button class="ib" data-a="bell" aria-label="Notificações"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg><span id="bc" hidden></span></button><div id="np" hidden></div></div><span class="av" id="av" aria-hidden="true"></span></div></header>
+<main id="main"></main></div>
+<div id="auth" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+const K='ecosnack-v1',$=s=>document.querySelector(s);
+const ML={c:'Café da manhã',a:'Almoço',l:'Lanche',j:'Jantar'},MT={c:'07:00',a:'12:00',l:'16:00',j:'19:30'},MO=['c','a','l','j'];
+const DN=['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+const CAT={h:'Hortifruti',p:'Carnes, peixes e ovos',g:'Grãos, massas e farinhas',l:'Laticínios',m:'Mercearia'};
+const R=`Cuscuz com ovo|c|Nordeste|320|10|1|o|flocão de milho:g;ovo:p;azeite:m
+Tapioca com queijo coalho|c|Nordeste|290|10|1|l|goma de tapioca:g;queijo coalho:l
+Pão com ovo mexido|c|Sudeste|340|10|1|go|pão francês:g;ovo:p;café:m
+Mingau de aveia com banana|c|Sul|300|10|1|lg|aveia:g;leite:l;banana:h
+Macaxeira com ovo cozido|c|Norte|330|25|1|o|macaxeira:h;ovo:p
+Banana com pasta de amendoim|l|Brasil|220|3|1||banana:h;pasta de amendoim:m
+Iogurte com mamão|l|Brasil|180|3|2|l|iogurte natural:l;mamão:h
+Maçã com castanha-de-caju|l|Brasil|210|2|2||maçã:h;castanha-de-caju:m
+Pipoca caseira|l|Brasil|150|8|1||milho de pipoca:g;óleo:m
+Pão com queijo minas|l|Sudeste|230|5|2|lg|pão francês:g;queijo minas:l
+Arroz, feijão, frango e salada|a|Brasil|620|40|2|c|arroz:g;feijão carioca:g;peito de frango:p;alface:h;tomate:h
+Arroz carreteiro|a|Sul|680|45|2|c|arroz:g;charque:p;cebola:h;alho:h
+Baião de dois com coalho|a|Nordeste|650|40|2|l|arroz:g;feijão-de-corda:g;queijo coalho:l;coentro:h
+Moqueca de peixe|a|Norte|600|45|3|c|peixe:p;leite de coco:m;pimentão:h;tomate:h;arroz:g
+Omelete de legumes com arroz e feijão|a|Brasil|540|20|1|o|ovo:p;cenoura:h;arroz:g;feijão carioca:g
+Macarrão com carne moída|a|Brasil|650|30|2|cg|macarrão:g;carne moída:p;molho de tomate:m;cebola:h
+Galinhada|a|Centro-Oeste|640|50|2|c|arroz:g;coxa de frango:p;milho verde:h;açafrão:m
+Lentilha com arroz e legumes|a|Brasil|560|35|1||lentilha:g;arroz:g;cenoura:h;cebola:h
+Feijoada leve com couve|a|Sudeste|700|90|3|c|feijão preto:g;linguiça:p;couve:h;arroz:g
+Sopa de legumes com frango|j|Sudeste|380|35|1|c|peito de frango:p;batata:h;cenoura:h;chuchu:h
+Tapioca com frango desfiado|j|Nordeste|360|15|2|c|goma de tapioca:g;peito de frango:p;tomate:h
+Sanduíche natural de frango|j|Brasil|390|10|2|cg|pão de forma:g;peito de frango:p;alface:h;cenoura:h
+Caldo de feijão com ovo|j|Brasil|400|25|1|o|feijão carioca:g;ovo:p;cebola:h
+Ovos mexidos com macaxeira|j|Norte|420|20|1|o|ovo:p;macaxeira:h;tomate:h
+Panqueca de aveia com queijo|j|Brasil|370|15|2|log|aveia:g;ovo:p;queijo minas:l`.split('\n').map((l,id)=>{const x=l.split('|');return{id,n:x[0],m:x[1],r:x[2],k:+x[3],t:+x[4],c:+x[5],tg:x[6],ing:x[7].split(';').map(i=>{const y=i.split(':');return{n:y[0],c:y[1]}})}});
+const blank=()=>({p:null,plan:null,done:{},water:{},w:[],bought:{},theme:''});
+let UK=null,S=load(),sel=(new Date().getDay()+6)%7;
+function load(){if(!UK)return blank();try{return Object.assign(blank(),JSON.parse(localStorage.getItem(K+':'+UK)||'{}'))}catch(e){return blank()}}
+function save(){if(!UK)return;try{localStorage.setItem(K+':'+UK,JSON.stringify(S))}catch(e){toast('Não foi possível salvar neste navegador.')}}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('show'),2800)}
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const iso=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const fmt=n=>String(n).replace('.',',');
+function applyTheme(){if(S.theme)document.documentElement.dataset.theme=S.theme;else delete document.documentElement.dataset.theme}
+function calc(p){const a=+p.idade,h=+p.altura,w=+p.peso;
+const b=10*w+6.25*h-5*a+(p.sexo=='M'?5:p.sexo=='F'?-161:-78);
+const imc=w/((h/100)**2),flag=!!p.cond||a<18||imc<18.5;
+let f=p.obj=='emagrecer'?.85:p.obj=='ganhar'?1.1:1;if(flag)f=1;
+const t=Math.max(b*(+p.ativ)*f,p.sexo=='M'?1500:1200);
+return{kcal:Math.round(t/10)*10,imc,flag,water:Math.round(w*35/250)}}
+function pool(m){const p=S.p,av=(p.evitar||'').split(',').map(norm).map(s=>s.trim()).filter(Boolean);
+return R.filter(r=>{if(r.m!=m)return false;
+if(p.veg&&r.tg.includes('c'))return false;if(p.lac&&r.tg.includes('l'))return false;if(p.glu&&r.tg.includes('g'))return false;
+if(p.orc=='eco'&&r.c>2)return false;
+const txt=norm(r.n+' '+r.ing.map(i=>i.n).join(' '));return !av.some(a=>txt.includes(a))})}
+function gen(){const plan=[];const off={};MO.forEach(m=>off[m]=Math.floor(Math.random()*5));
+for(let d=0;d<7;d++){plan[d]={};MO.forEach(m=>{const pl=pool(m);plan[d][m]=pl.length?pl[(d+off[m])%pl.length].id:null})}S.plan=plan}
+function dayInfo(d){const c=calc(S.p),ids=MO.map(m=>S.plan[d][m]),sum=ids.reduce((s,i)=>s+(i==null?0:R[i].k),0);
+const f=sum?Math.min(1.6,Math.max(.7,c.kcal/sum)):1;return{f:Math.round(f*10)/10,c}}
+function tdi(){return (new Date().getDay()+6)%7}
+function noticeHtml(c){return c.flag?`<div class="warn"><strong>Procure um nutricionista.</strong> Pelos dados informados (menor de 18 anos, IMC baixo, gestação, doença ou transtorno alimentar), o EcoSnack não aplica déficit calórico. Use o cardápio apenas como ideia de organização.</div>`:''}
+function mealRow(d,m,withEdit){const id=S.plan[d][m];if(id==null)return `<div class="meal"><div class="in"><strong>${ML[m]}</strong><div class="mu sm">Nenhuma receita compatível. Revise restrições e orçamento no perfil.</div></div></div>`;
+const r=R[id],{f}=dayInfo(d),k=d+'|'+m,dk=(d==tdi()?iso():'x')+'|'+m;
+return `<div class="meal ${S.done[dk]&&d==tdi()?'done':''}">${d==tdi()?`<input type="checkbox" aria-label="Marcar ${ML[m]} como feito" data-a="done" data-k="${dk}" ${S.done[dk]?'checked':''}>`:''}
+<div class="in"><div class="nm"><strong>${ML[m]}</strong> · ${MT[m]}</div><div>${r.n}</div>
+<div class="mu sm">${r.r} · ${r.t} min · porção ×${fmt(f)} · ~${Math.round(r.k*f)} kcal · custo ${'$'.repeat(r.c)}</div>
+${withEdit?`<div class="mu sm">${r.ing.map(i=>i.n).join(', ')}</div>`:''}</div>
+${withEdit?`<button data-a="swap" data-k="${k}">Trocar</button>`:''}</div>`}
+const OB={emagrecer:'Emagrecimento',manter:'Manutenção de peso',ganhar:'Ganho de massa',habitos:'Melhoria de hábitos'};
+function hoje(){const p=S.p;
+if(!p)return `<div class="cd empty"><h2>Comece pelo seu perfil</h2><p class="mu">Conte um pouco sobre você e receba um cardápio semanal com receitas brasileiras.</p><a class="b" href="#perfil">Criar meu perfil</a></div>`;
+const c=calc(p),d=iso(),ti=tdi(),wt=S.water[d]||0,dk=m=>d+'|'+m;
+const sw=[...S.w].sort((a,b)=>a.d<b.d?-1:1),wn=sw.length?sw[sw.length-1].v:+p.peso;
+const w7=new Date(Date.now()-7*864e5),lim=w7.getFullYear()+'-'+String(w7.getMonth()+1).padStart(2,'0')+'-'+String(w7.getDate()).padStart(2,'0');
+const ref=sw.length>1?([...sw].reverse().find(x=>x.d<=lim)||sw[0]):null,dl=ref&&ref!==sw[sw.length-1]?Math.round((wn-ref.v)*10)/10:null;
+const nx=MO.find(m=>!S.done[dk(m)]),nd=MO.filter(m=>S.done[dk(m)]).length,f=S.plan?dayInfo(ti).f:1;
+const eat=S.plan?MO.reduce((s,m)=>s+(S.done[dk(m)]&&S.plan[ti][m]!=null?Math.round(R[S.plan[ti][m]].k*f):0),0):0;
+const pct=Math.min(100,Math.round(eat/c.kcal*100)),nr=nx&&S.plan&&S.plan[ti][nx]!=null?R[S.plan[ti][nx]]:null;
+return noticeHtml(c)+`<div class="grid">
+<div class="cd"><div class="mu sm">Peso atual</div><div class="big">${fmt(wn)} kg</div></div>
+<div class="cd"><div class="mu sm">Meta de peso</div><div class="big">${p.meta?fmt(p.meta)+' kg':'—'}</div>${p.meta?'':'<div class="mu sm">Defina no perfil</div>'}</div>
+<div class="cd"><div class="mu sm">Evolução semanal</div><div class="big ${dl!==null?'gr':''}">${dl!==null?(dl>0?'+':'')+fmt(dl)+' kg':'—'}</div>${dl!==null?'':'<div class="mu sm">Registre seu peso</div>'}</div>
+<div class="cd"><div class="mu sm">Água hoje</div><div class="big">${wt}<span class="mu sm"> / ${c.water} copos</span></div><div class="row" style="margin-top:8px"><button data-a="water" data-k="-1" aria-label="Menos um copo">−</button><button data-a="water" data-k="1" aria-label="Mais um copo">+</button></div></div></div>
+<div class="g2"><div class="cd"><h2>Refeições de hoje</h2>${S.plan?MO.map(m=>mealRow(ti,m,false).replace('class="meal ','class="meal '+(m==nx?'next ':''))).join(''):'<p class="mu">Gere seu cardápio no perfil.</p>'}</div>
+<div class="stk"><div class="cd"><h2>Próxima refeição</h2>${nr?`<div class="mu sm">${ML[nx]} · ${MT[nx]}</div><div style="font-weight:500">${nr.n}</div><div class="mu sm">${nr.t} min · ${nr.r}</div>`:nd==4?'<p class="mu">Dia completo. Bom trabalho!</p>':'<p class="mu">Sem refeição pendente.</p>'}</div>
+<div class="cd"><h2>Resumo nutricional</h2><div class="big gr">${eat} <span class="mu sm">/ ${c.kcal} kcal</span></div><div class="bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div><div class="mu sm">${nd} de 4 refeições feitas · estimativa geral</div></div>
+<div class="cd"><h2>Plano alimentar ativo</h2><div class="mu sm">${OB[p.obj]} · orçamento ${p.orc=='eco'?'econômico':'flexível'}</div><p style="margin:10px 0 0"><a class="b" href="#cardapio">Ver plano da semana</a></p></div>
+<div class="cd"><h2>Assistente IA</h2><p class="mu sm" style="margin:0 0 10px">Veja como o assistente vai funcionar.</p><a class="btn" href="#assistente" style="text-decoration:none">Abrir assistente</a></div></div></div>`}
+function refeicoes(){if(!S.p||!S.plan)return empty('Sem refeições ainda','Preencha seu perfil para gerar o cardápio.');
+return `<h1>Minhas refeições</h1><div class="cd">${MO.map(m=>mealRow(tdi(),m,false)).join('')}</div>`+compras().replace('<h1>','<h2 class="sec">').replace('</h1>','</h2>')}
+function assistente(){return `<h1>Assistente IA</h1><div class="cd empty"><h2>Ainda não está ativo</h2><p class="mu" style="max-width:52ch;margin:0 auto 14px">O assistente precisa de um servidor para guardar as conversas e chamar o modelo de IA com segurança. Esta versão do EcoSnack roda inteira no navegador, por isso ele ainda não existe aqui. Enquanto isso, você pode trocar qualquer refeição do plano com um toque.</p><a class="b" href="#cardapio">Ir para o plano alimentar</a></div>`}
+function config(){const a=accts()[UK]||{};return `<h1>Configurações</h1>
+<div class="cd"><h2>Aparência</h2><p class="mu sm">Alterne entre o tema escuro e o claro.</p><button data-a="theme">Alternar tema</button></div>
+<div class="cd"><h2>Conta</h2><p class="mu sm">${esc(a.nome||'')} · ${esc(UK||'')}</p><button data-a="logout">Sair da conta</button></div>
+<div class="cd"><h2>Gerenciamento de dados</h2><p class="mu sm">Seus dados ficam salvos apenas neste navegador.</p>
+<details class="adv"><summary>Opções avançadas</summary><p class="mu sm" style="margin:8px 0 0">Faça um backup antes de apagar qualquer coisa.</p><div class="row"><button data-a="export">Exportar JSON</button><label class="btn" style="font-weight:400;cursor:pointer">Importar JSON<input type="file" id="imp" accept="application/json" hidden></label><button class="dg" data-a="reset">Apagar dados</button><button class="dg" data-a="delacct">Excluir conta</button></div></details></div>
+<p class="ft">O EcoSnack é uma ferramenta de organização alimentar. Ele não substitui médicos nem nutricionistas e não faz diagnóstico nem prescrição.</p>`}
+function cardapio(){if(!S.p||!S.plan)return empty('Você ainda não tem cardápio','Preencha seu perfil para gerar a primeira semana.');
+const {c}=dayInfo(sel);
+return `<h1>Cardápio da semana</h1>${noticeHtml(c)}<div class="tabs" role="tablist">${DN.map((n,i)=>`<button role="tab" class="${i==sel?'on':''}" data-a="day" data-k="${i}">${n}</button>`).join('')}</div>
+<div class="cd">${MO.map(m=>mealRow(sel,m,true)).join('')}</div>
+<p class="row"><button data-a="regen">Gerar nova semana</button></p><p class="mu sm">Calorias são estimativas gerais a partir de porções médias, e não valores de tabela nutricional.</p>`}
+function compras(){if(!S.p||!S.plan)return empty('Sua lista está vazia','Ela é montada automaticamente a partir do cardápio.');
+const m={};S.plan.forEach(day=>MO.forEach(k=>{if(day[k]==null)return;R[day[k]].ing.forEach(i=>{const key=i.c+'|'+i.n;m[key]=(m[key]||0)+1})}));
+const g={};Object.keys(m).sort().forEach(k=>{const [c,n]=k.split('|');(g[c]=g[c]||[]).push([n,m[k],k])});
+return `<h1>Lista de compras</h1><p class="mu">Ingredientes da semana, por categoria. O número indica em quantas refeições cada um aparece.</p>
+<div class="grid">${Object.keys(CAT).filter(c=>g[c]).map(c=>`<div class="cd"><h3>${CAT[c]}</h3>${g[c].map(([n,q,k])=>`<label style="font-weight:400;padding:3px 0"><input type="checkbox" data-a="bought" data-k="${esc(k)}" ${S.bought[k]?'checked':''}>${esc(n)} <span class="mu sm">×${q}</span></label>`).join('')}</div>`).join('')}</div>`}
+function chart(){const w=[...S.w].sort((a,b)=>a.d<b.d?-1:1);if(w.length<2)return '<p class="mu">Registre ao menos dois pesos para ver o gráfico.</p>';
+const vs=w.map(x=>x.v),mn=Math.min(...vs)-1,mx=Math.max(...vs)+1,W=600,H=200;
+const px=i=>30+i*(W-50)/(w.length-1),py=v=>H-25-(v-mn)/(mx-mn)*(H-50);
+return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Evolução do peso"><polyline fill="none" stroke="var(--ac)" stroke-width="3" points="${w.map((x,i)=>px(i)+','+py(x.v)).join(' ')}"/>${w.map((x,i)=>`<circle cx="${px(i)}" cy="${py(x.v)}" r="4" fill="var(--ac)"/>`).join('')}<text x="4" y="${py(mx)+4}" fill="var(--mu)" font-size="12">${fmt(Math.round(mx))}</text><text x="4" y="${py(mn)+4}" fill="var(--mu)" font-size="12">${fmt(Math.round(mn))}</text><text x="30" y="${H-4}" fill="var(--mu)" font-size="12">${w[0].d}</text><text x="${W-20}" y="${H-4}" text-anchor="end" fill="var(--mu)" font-size="12">${w[w.length-1].d}</text></svg>`}
+function progresso(){const w=[...S.w].sort((a,b)=>a.d<b.d?1:-1),df=S.w.length>1?[...S.w].sort((a,b)=>a.d<b.d?-1:1):null;
+const delta=df?Math.round((df[df.length-1].v-df[0].v)*10)/10:null;
+return `<h1>Progresso</h1><div class="cd"><h2>Novo registro</h2><form id="fw" class="f2"><label>Data<input type="date" name="d" value="${iso()}" required></label><label>Peso (kg)<input type="number" name="v" step="0.1" min="30" max="300" required></label><label>Observação<input name="n" maxlength="120"></label><div style="align-self:end"><button class="b">Salvar registro</button></div></form></div>
+<div class="cd" style="margin-top:14px"><h2>Evolução do peso</h2>${delta!==null?`<p class="mu">${delta>0?'+':''}${fmt(delta)} kg desde o primeiro registro.</p>`:''}${chart()}</div>
+<div class="cd" style="margin-top:14px"><h2>Histórico</h2>${w.length?w.map(x=>`<div class="row" style="justify-content:space-between;padding:6px 0;border-top:1px solid var(--ln)"><span>${x.d} · <strong>${fmt(x.v)} kg</strong> <span class="mu sm">${esc(x.n||'')}</span></span><button data-a="delw" data-k="${S.w.indexOf(x)}" aria-label="Excluir registro">Excluir</button></div>`).join(''):'<p class="mu">Nenhum registro ainda. Adicione o primeiro acima.</p>'}</div>`}
+function perfil(){const p=S.p||{sexo:'F',obj:'emagrecer',ativ:'1.375',orc:'eco'};
+const o=(v,l,cur)=>`<option value="${v}" ${String(cur)==String(v)?'selected':''}>${l}</option>`,ck=(n,l)=>`<label style="font-weight:400"><input type="checkbox" name="${n}" ${p[n]?'checked':''}>${l}</label>`;
+return `<h1>${S.p?'Meu perfil':'Crie seu perfil'}</h1><form id="fp">
+<fieldset><legend>Dados pessoais</legend><div class="f2"><label>Nome<input name="nome" required maxlength="60" value="${esc(p.nome||'')}"></label><label>Idade<input type="number" name="idade" min="14" max="100" required value="${esc(p.idade||'')}"></label>
+<label>Sexo (para estimativa)<select name="sexo">${o('F','Feminino',p.sexo)}${o('M','Masculino',p.sexo)}${o('O','Prefiro não informar',p.sexo)}</select></label>
+<label>Altura (cm)<input type="number" name="altura" min="120" max="230" required value="${esc(p.altura||'')}"></label><label>Peso atual (kg)<input type="number" step="0.1" name="peso" min="30" max="300" required value="${esc(p.peso||'')}"></label><label>Meta de peso (kg)<input type="number" step="0.1" name="meta" min="30" max="300" value="${esc(p.meta||'')}"></label></div></fieldset>
+<fieldset><legend>Objetivo e rotina</legend><div class="f2"><label>Objetivo<select name="obj">${o('emagrecer','Emagrecimento',p.obj)}${o('manter','Manutenção de peso',p.obj)}${o('ganhar','Ganho de massa',p.obj)}${o('habitos','Melhorar hábitos',p.obj)}</select></label>
+<label>Atividade física<select name="ativ">${o('1.2','Sedentário',p.ativ)}${o('1.375','1 a 3 treinos por semana',p.ativ)}${o('1.55','4 a 5 treinos por semana',p.ativ)}${o('1.725','Treino diário intenso',p.ativ)}</select></label>
+<label>Orçamento<select name="orc">${o('eco','Econômico',p.orc)}${o('flex','Flexível',p.orc)}</select></label></div></fieldset>
+<fieldset><legend>Alimentação</legend>${ck('veg','Vegetariano')}${ck('lac','Sem lactose')}${ck('glu','Sem glúten')}
+<label style="margin-top:10px">Alergias e alimentos que você evita (separe por vírgula)<textarea name="evitar" rows="2" maxlength="200" placeholder="amendoim, camarão, batata">${esc(p.evitar||'')}</textarea></label>
+<div style="margin-top:10px">${ck('cond','Estou gestante, tenho doença crônica ou transtorno alimentar')}</div></fieldset>
+<button class="b">${S.p?'Salvar e refazer cardápio':'Criar perfil e gerar cardápio'}</button></form>
+<p class="ft">O EcoSnack é uma ferramenta de organização alimentar. Ele não substitui médicos nem nutricionistas e não faz diagnóstico nem prescrição.</p>`}
+function empty(t,s){return `<div class="cd" style="text-align:center;padding:40px 20px"><h2>${t}</h2><p class="mu">${s}</p><a class="b" href="#perfil">Ir para o perfil</a></div>`}
+function notes(){const n=[];if(!S.p){n.push('Complete seu perfil para gerar o cardápio.');return n}
+const d=iso(),c=calc(S.p),nx=MO.find(m=>!S.done[d+'|'+m]);
+if(nx)n.push(`Próxima refeição: ${ML[nx]}, ${MT[nx]}.`);
+if((S.water[d]||0)<c.water)n.push(`Água de hoje: ${S.water[d]||0} de ${c.water} copos.`);
+const lw=[...S.w].sort((a,b)=>a.d<b.d?1:-1)[0];if(!lw||Date.now()-new Date(lw.d+'T12:00')>7*864e5)n.push('Faz mais de 7 dias desde seu último registro de peso.');
+return n}
+function hdr(){const nm=(S.p&&S.p.nome)||(accts()[UK]||{}).nome||'';
+$('#hi').textContent=nm?'Olá, '+nm.split(' ')[0]:'Olá';
+$('#dt').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
+$('#av').textContent=nm.split(' ').filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'EC';
+const n=notes();$('#bc').hidden=!n.length;$('#bc').textContent=n.length;
+$('#np').innerHTML=n.length?n.map(x=>`<p>${x}</p>`).join(''):'<p class="mu">Nenhuma notificação.</p>';$('#np').hidden=true}
+function route(){if(!UK)return;
+const f={hoje,cardapio,compras,refeicoes,progresso,assistente,config,perfil}[(location.hash||'#hoje').slice(1)]||hoje;
+document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+f.name));
+hdr();$('#main').innerHTML=f();window.scrollTo(0,0)}
+function redraw(){const y=scrollY;route();scrollTo(0,y)}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,k=t.dataset.k;
+if(a=='logout'){logout();return}
+if(a=='delacct'){delAcct();return}
+if(a=='am'){showAuth(k);return}
+if(a=='forgot'){forgot();return}
+if(a=='theme'){S.theme=S.theme=='light'?'dark':'light';applyTheme();save();return}
+if(a=='bell'){$('#np').hidden=!$('#np').hidden;return}
+if(a=='done'){S.done[k]=t.checked}
+else if(a=='water'){const d=iso();S.water[d]=Math.max(0,(S.water[d]||0)+ +k)}
+else if(a=='day'){sel=+k}
+else if(a=='bought'){S.bought[k]=t.checked;save();return}
+else if(a=='regen'){gen();toast('Nova semana gerada.')}
+else if(a=='swap'){const [d,m]=k.split('|'),pl=pool(m),cur=S.plan[d][m],i=pl.findIndex(r=>r.id==cur);
+if(pl.length<2){toast('Não há outra receita compatível com seu perfil.');return}S.plan[d][m]=pl[(i+1)%pl.length].id;toast('Refeição trocada.')}
+else if(a=='delw'){S.w.splice(+k,1);toast('Registro excluído.')}
+else if(a=='export'){const b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),u=URL.createObjectURL(b);const l=document.createElement('a');l.href=u;l.download='ecosnack-backup.json';l.click();setTimeout(()=>URL.revokeObjectURL(u),1000);return}
+else if(a=='reset'){if(!confirm('Apagar todos os dados deste navegador? Isso não pode ser desfeito.'))return;S=blank();save();toast('Dados apagados.');location.hash='#hoje'}
+save();redraw()});
+document.addEventListener('submit',e=>{e.preventDefault();const f=e.target,v=Object.fromEntries(new FormData(f));
+if(f.id=='fl'||f.id=='fs'){authSubmit(f.id,v);return}
+if(f.id=='fw'){if(!(+v.v>=30&&+v.v<=300)){toast('Informe um peso entre 30 e 300 kg.');return}S.w.push({d:v.d,v:+v.v,n:v.n});if(S.p)S.p.peso=+v.v;save();toast('Registro salvo.');redraw()}
+if(f.id=='fp'){['veg','lac','glu','cond'].forEach(n=>v[n]=!!v[n]);
+if(!(+v.idade>=14&&+v.altura>=120&&+v.peso>=30)){toast('Confira idade, altura e peso.');return}
+S.p=v;if(!S.w.length)S.w.push({d:iso(),v:+v.peso,n:'Peso inicial'});gen();save();toast('Perfil salvo e cardápio gerado.');location.hash='#hoje';route()}});
+document.addEventListener('change',e=>{if(e.target.id!='imp')return;const fl=e.target.files[0];if(!fl)return;const r=new FileReader();
+r.onload=()=>{try{const d=JSON.parse(r.result);if(typeof d!='object'||!d)throw 0;S=Object.assign(blank(),d);save();applyTheme();toast('Backup importado.');redraw()}catch(x){toast('Arquivo inválido. Use um JSON exportado pelo EcoSnack.')}};r.readAsText(fl)});
+const AK='ecosnack-accts',SK='ecosnack-sess';
+const accts=()=>{try{return JSON.parse(localStorage.getItem(AK)||'{}')}catch(e){return{}}};
+const putAccts=a=>localStorage.setItem(AK,JSON.stringify(a));
+const b64=u=>btoa(String.fromCharCode(...new Uint8Array(u))),unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function hashPw(pw,salt){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveBits']);return b64(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations:150000},k,256))}
+let authMode='login';
+function authView(){const s=authMode=='signup';
+return `<div class="ac"><div class="logo">Eco<i>Snack</i></div><p class="mu">Seu plano, seu ritmo.</p>
+<div class="at" role="tablist"><button type="button" role="tab" class="${s?'':'on'}" data-a="am" data-k="login">Entrar</button><button type="button" role="tab" class="${s?'on':''}" data-a="am" data-k="signup">Criar conta</button></div>
+<p id="aerr" class="warn" role="alert" hidden></p>
+${s?`<form id="fs"><label>Nome completo<input name="nome" required maxlength="80" autocomplete="name"></label>
+<label>E-mail<input type="email" name="email" required autocomplete="email"></label>
+<label>Senha (mínimo de 8 caracteres)<input type="password" name="senha" required minlength="8" autocomplete="new-password"></label>
+<label>Confirmar senha<input type="password" name="conf" required autocomplete="new-password"></label>
+<label style="font-weight:400"><input type="checkbox" name="termos" required>Li e aceito os termos de uso e a política de privacidade</label>
+<details class="sm mu"><summary>O que diz a política de privacidade</summary><p>Seus dados de perfil, peso e cardápio ficam salvos somente neste navegador e não são enviados a nenhum servidor. Você pode exportá-los ou excluí-los a qualquer momento no seu perfil. O EcoSnack organiza a alimentação e não substitui médicos nem nutricionistas.</p></details>
+<button class="b">Criar conta</button></form>`:`<form id="fl"><label>E-mail<input type="email" name="email" required autocomplete="email"></label>
+<label>Senha<input type="password" name="senha" required autocomplete="current-password"></label>
+<label style="font-weight:400"><input type="checkbox" name="manter">Manter conectado neste dispositivo</label>
+<button class="b">Entrar</button><button type="button" class="lk" data-a="forgot">Esqueci minha senha</button></form>`}
+<p class="ft">As contas ficam salvas apenas neste navegador.</p></div>`}
+function showAuth(m){authMode=m;document.body.classList.add('out');const a=$('#auth');a.hidden=false;a.innerHTML=authView();const i=a.querySelector('input');if(i)i.focus()}
+function aerr(m){const e=$('#aerr');if(e){e.textContent=m;e.hidden=false}}
+async function authSubmit(id,v){const em=(v.email||'').trim().toLowerCase(),A=accts();
+if(!/^\S+@\S+\.\S+$/.test(em))return aerr('Digite um e-mail válido.');
+try{if(id=='fs'){if(!v.nome.trim())return aerr('Informe seu nome completo.');if(v.senha.length<8)return aerr('A senha precisa ter ao menos 8 caracteres.');if(v.senha!==v.conf)return aerr('As senhas não coincidem.');if(!v.termos)return aerr('Aceite os termos para continuar.');if(A[em])return aerr('Já existe uma conta com este e-mail neste navegador. Entre ou use outro e-mail.');
+const salt=crypto.getRandomValues(new Uint8Array(16));A[em]={nome:v.nome.trim(),salt:b64(salt),hash:await hashPw(v.senha,salt)};putAccts(A);
+try{const old=localStorage.getItem(K);if(old&&!localStorage.getItem(K+':'+em)){localStorage.setItem(K+':'+em,old);localStorage.removeItem(K)}}catch(e){}}
+else{const a=A[em];if(!a||await hashPw(v.senha,unb64(a.salt))!==a.hash)return aerr('E-mail ou senha incorretos.')}
+startSession(em,!!v.manter||id=='fs')}catch(e){aerr('Não foi possível entrar. Use um navegador atualizado.')}}
+function startSession(em,keep,quiet){try{localStorage.removeItem(SK);sessionStorage.removeItem(SK);(keep?localStorage:sessionStorage).setItem(SK,em)}catch(e){}
+UK=em;S=load();applyTheme();document.body.classList.remove('out');$('#auth').hidden=true;if(!location.hash||location.hash=='#')location.hash='#hoje';route();
+if(!quiet)toast('Olá, '+accts()[em].nome.split(' ')[0]+'!')}
+function logout(){try{localStorage.removeItem(SK);sessionStorage.removeItem(SK)}catch(e){}UK=null;S=blank();showAuth('login')}
+function delAcct(){if(!confirm('Excluir sua conta e todos os dados salvos neste navegador? Isso não pode ser desfeito.'))return;const A=accts();delete A[UK];putAccts(A);try{localStorage.removeItem(K+':'+UK)}catch(e){}logout()}
+function forgot(){const em=(($('#fl [name=email]')||{}).value||'').trim().toLowerCase(),A=accts();
+if(!A[em])return aerr('Digite acima o e-mail da conta que você quer recuperar.');
+if(!confirm('Este site não tem servidor para enviar e-mail, então a senha não pode ser redefinida por link. Para recuperar o acesso é preciso excluir esta conta do navegador, o que apaga os dados dela. Se você tiver um backup JSON, poderá importá-lo depois. Excluir a conta?'))return;
+delete A[em];putAccts(A);try{localStorage.removeItem(K+':'+em)}catch(e){}showAuth('signup');aerr('Conta removida deste navegador. Crie-a novamente e, se tiver um backup, importe-o no perfil.')}
+function boot(){let em=null;try{em=sessionStorage.getItem(SK)||localStorage.getItem(SK)}catch(e){}
+if(em&&accts()[em])startSession(em,!!localStorage.getItem(SK),true);else showAuth('login')}
+addEventListener('hashchange',route);boot();
+</script>
+</body>
+</html>
